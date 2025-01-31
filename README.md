@@ -8,7 +8,7 @@
 
   <h3 align="center">Aonsoku</h3>
   <p align="center">
-    A modern desktop client for Navidrome/Subsonic servers built with React and Rust.
+    A modern desktop client for Navidrome/Subsonic servers built with React and Rust. Forked repository to make a little change to Artists screen - so they look exactly like albums screen. Otherwise it's the same.
     <br />
     <br />
     <a href="https://aonsoku.vercel.app">Web App</a>
