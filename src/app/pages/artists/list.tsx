@@ -20,7 +20,6 @@ export default function ArtistsList() {
   const { getArtistAllSongs } = useSongList()
   const { setSongList } = usePlayerActions()
   const scrollDivRef = useRef<HTMLDivElement | null>(null)
-  const defaultOffset = 50
 
   useEffect(() => {
     scrollDivRef.current = document.querySelector(
@@ -28,7 +27,7 @@ export default function ArtistsList() {
     ) as HTMLDivElement
   }, [])
 
-  const fetchArtists = async ({ pageParam = 0 }) => {
+  const fetchArtists = async () => {
     const response = await subsonic.artists.getAll()
     return {
       artists: response,
