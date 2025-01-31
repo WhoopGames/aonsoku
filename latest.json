@@ -1,0 +1,23 @@
+{
+  "version": "0.8.1",
+  "notes": "# v0.8.1 Release Notes\n\n## 🚀 New Features\n\n- **Tablet Support**: Added initial support for tablets and touch events. Thanks to @SamarthMP!\n- **Default Gain**: Introduced a new option in Replay Gain settings to define a default gain for songs without Replay Gain metadata.\n\n## 🛠️ Fixes\n\n- **Search**: Improved the search functionality to trigger correctly for non-Latin characters. Thanks to @SamarthMP!\n- **Volume Variations**: Resolved the issue causing volume level variations after changing songs.\n- **Lyrics**: Updated lyrics handling to use plain lyrics from LRCLIB if synced lyrics are not found.\n- **Replay Gain on Linux**: Disabled the Replay Gain feature on the Linux desktop app due to system bugs that could affect user experience.\n- **Window Controls**: Added window controls to the big player on the Windows desktop app.\n- **Song Info**: Fixed the overflow issue in the song info section of the big player.\n- **Player**: Enhanced the player to handle CORS errors more effectively.",
+  "pub_date": "2025-01-24T22:23:38.098Z",
+  "platforms": {
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUWZPMVNhOVpaVE84ZTc1Z0V5c2lqN0loc3JFeHhrYWdUdUlzN1VIeENrbDU3R0wxY2s4ZDRSc3RPY1I2SElHUjJkMklPOC9QR0JpUEtqZWMxdGxJQ0QrVm5ZcDMxU2drPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzM3NzU2ODkzCWZpbGU6QW9uc29rdS5hcHAudGFyLmd6ClBPMExkYm5mV2pjU3N1cFBIYUlXUHBkbHlMN0tteUF0R3FWR1NMMVpDYkxMMGxZUnhRVWU3NHFPMUQ5VE9lY1hTUzRMekM0cGxSVVcxbzVYRWVudUF3PT0K",
+      "url": "https://github.com/victoralvesf/aonsoku/releases/download/v0.8.1/Aonsoku_aarch64.app.tar.gz"
+    },
+    "darwin-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUWZPMVNhOVpaVER6Ny9ldlBQUTE3c2wzYWRnUG42NEpKZjd6Z1MwUnI3em1UazdDYktUNE42YVNTTW1nb2xmUGFNdEF5S2tRN3JCV0lMYkZrVFJSemlydGpLaWFOMmdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzM3NzU2OTgwCWZpbGU6QW9uc29rdS5hcHAudGFyLmd6Ck5JSkVXQ1VoUUR4WFRITm9EU05XYjFTT2swc2JjbDNwazlNOTRqNUZ4TTBTZmxCL3MzWDk1cStpTmxnTDA0dTJCcHNiNk9FMkovMzN2Wmg2MytETkF3PT0K",
+      "url": "https://github.com/victoralvesf/aonsoku/releases/download/v0.8.1/Aonsoku_x64.app.tar.gz"
+    },
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUWZPMVNhOVpaVE0xajEvOUplUU9PREJtckwycS9wd1FnVU1rSm5lT0ZBZFRwMzJ4QkNiVkh5RytmU2VkanRKWFpOWXpXcmNXOXJ0ZG5mRjJIMEMvdWRwc2tHN3pRZ0FVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzM3NzU3NDE1CWZpbGU6QW9uc29rdV8wLjguMV94NjRfZW4tVVMubXNpCkpycFh4elVOWEt4NzkrWmxaeFNISUc3VkVQSVprZ3hSZWJZRlhhN0JmRFI5WWJhTUhRSmUxdnNWdDRZZlNVSXVGTE8yeGFGQlFZY0t2WEU4SzNiV0F3PT0K",
+      "url": "https://github.com/victoralvesf/aonsoku/releases/download/v0.8.1/Aonsoku_0.8.1_x64_en-US.msi"
+    },
+    "linux-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUUWZPMVNhOVpaVEVtenZBNURoeXlHRDU0WVFVeXQvdnhRVEdLV0lJSUoxL29FRWgzOUUwekM3S05pWTJ4VmhldWEvc2EramxFNis0YkUybE4yTitnQnkydXJFSVhpV3c0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzM3NzYwNzIxCWZpbGU6QW9uc29rdV8wLjguMV9hbWQ2NC5BcHBJbWFnZQpPZUl5QlkxNzdFVFA5N05jcUFBRytuRjg0WjVyaUcveFF0WUxyNXZ4dzMyS3A2WTdTaFdrYndqb1hOTUNPTHZnVUdwSWU5VVU1ZjJ6eWt1L1Q1YW5Ddz09Cg==",
+      "url": "https://github.com/victoralvesf/aonsoku/releases/download/v0.8.1/Aonsoku_0.8.1_amd64.AppImage"
+    }
+  }
+}
