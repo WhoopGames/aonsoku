@@ -81,7 +81,7 @@ export default function ArtistsList() {
             <PreviewCard.Root key={`artist-${artist.id}`}>
               <PreviewCard.ImageWrapper link={ROUTES.ARTIST.PAGE(artist.id)}>
                 <PreviewCard.Image
-                  src={getCoverArtUrl(artist.coverArt, 'artist', '1000')}
+                  src={getCoverArtUrl(artist.coverArt, 'artist', 'original')}
                   alt={artist.name}
                 />
                 <PreviewCard.PlayButton onClick={() => handlePlayArtistRadio(artist)} />

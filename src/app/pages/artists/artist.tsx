@@ -1,37 +1,28 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import ImageHeader from '@/app/components/album/image-header'
-import ArtistTopSongs from '@/app/components/artist/artist-top-songs'
 import { ArtistInfo } from '@/app/components/artist/info'
-import RelatedArtistsList from '@/app/components/artist/related-artists'
 import { AlbumFallback } from '@/app/components/fallbacks/album-fallbacks'
-import { PreviewListFallback } from '@/app/components/fallbacks/home-fallbacks'
-import { TopSongsTableFallback } from '@/app/components/fallbacks/table-fallbacks'
 import { BadgesData } from '@/app/components/header-info'
-import PreviewList from '@/app/components/home/preview-list'
+import { PreviewCard } from '@/app/components/preview-card/card'
 import ListWrapper from '@/app/components/list-wrapper'
-import {
-  useGetArtist,
-  useGetArtistInfo,
-  useGetTopSongs,
-} from '@/app/hooks/use-artist'
+import { useGetArtist } from '@/app/hooks/use-artist'
 import ErrorPage from '@/app/pages/error-page'
 import { ROUTES } from '@/routes/routesList'
+import { getCoverArtUrl } from '@/api/httpClient'
+import { subsonic } from '@/service/subsonic'
+import { usePlayerActions } from '@/store/player.store'
 
 export default function Artist() {
   const { t } = useTranslation()
   const { artistId } = useParams() as { artistId: string }
+  const { setSongList } = usePlayerActions()
 
   const {
     data: artist,
     isLoading: artistIsLoading,
     isFetched,
   } = useGetArtist(artistId)
-  const { data: artistInfo, isLoading: artistInfoIsLoading } =
-    useGetArtistInfo(artistId)
-  const { data: topSongs, isLoading: topSongsIsLoading } = useGetTopSongs(
-    artist?.name,
-  )
 
   if (artistIsLoading) return <AlbumFallback />
   if (isFetched && !artist) {
@@ -53,7 +44,6 @@ export default function Artist() {
 
   function formatAlbumCount() {
     if (artist?.albumCount === undefined) return null
-
     return t('artist.info.albumsCount', { count: artist.albumCount })
   }
 
@@ -73,13 +63,19 @@ export default function Artist() {
     },
   ]
 
-  const recentAlbums = artist.album.sort((a, b) => {
-    // if the album does not have a year, send to the end of list
+  const albums = artist.album.sort((a, b) => {
     const yearA = a.year ?? -Infinity
     const yearB = b.year ?? -Infinity
-
-    return yearB - yearA
+    return yearA - yearB
   })
+
+  async function handlePlayAlbum(albumId: string) {
+    const album = await subsonic.albums.getOne(albumId)
+
+    if (album) {
+      setSongList(album.song, 0)
+    }
+  }
 
   return (
     <div className="w-full">
@@ -93,29 +89,32 @@ export default function Artist() {
         badges={badges}
       />
 
-      <ListWrapper>
-        <ArtistInfo artist={artist} />
-
-        {topSongsIsLoading && <TopSongsTableFallback />}
-        {topSongs && !topSongsIsLoading && (
-          <ArtistTopSongs topSongs={topSongs} artist={artist} />
-        )}
-
-        <PreviewList
-          title={t('artist.recentAlbums')}
-          list={recentAlbums}
-          moreTitle={t('album.more.discography')}
-          moreRoute={ROUTES.ALBUMS.ARTIST(artist.id, artist.name)}
-        />
-
-        {artistInfoIsLoading && <PreviewListFallback />}
-        {artistInfo?.similarArtist && !artistInfoIsLoading && (
-          <RelatedArtistsList
-            title={t('artist.relatedArtists')}
-            similarArtists={artistInfo.similarArtist}
+<ListWrapper>
+  <ArtistInfo artist={artist} />
+  <div className="grid grid-cols-6 2xl:grid-cols-8 gap-4 mt-6">
+    {albums.map((album) => (
+      <PreviewCard.Root key={album.id}>
+        <PreviewCard.ImageWrapper link={ROUTES.ALBUM.PAGE(album.id)}>
+          <PreviewCard.Image
+            src={getCoverArtUrl(album.coverArt, 'album', 'original')}
+            alt={album.name}
           />
-        )}
-      </ListWrapper>
+          <PreviewCard.PlayButton
+            onClick={() => handlePlayAlbum(album.id)}
+          />
+        </PreviewCard.ImageWrapper>
+        <PreviewCard.InfoWrapper>
+          <PreviewCard.Title link={ROUTES.ALBUM.PAGE(album.id)}>
+            {album.name}
+          </PreviewCard.Title>
+          <PreviewCard.Subtitle link={ROUTES.ALBUM.PAGE(album.id)}>
+            {album.year?.toString() ?? ''}
+          </PreviewCard.Subtitle>
+        </PreviewCard.InfoWrapper>
+      </PreviewCard.Root>
+    ))}
+  </div>
+</ListWrapper>
     </div>
   )
 }
